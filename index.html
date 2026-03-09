@@ -3,54 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>वॉइस ऑफ उत्तराखंड</title>
+    <title>वॉइस ऑफ उत्तराखंड - देवभूमि की आवाज़</title>
     <style>
-        :root { --primary: #1b4332; --bg: #fdfaf6; }
-        body { font-family: sans-serif; background: var(--bg); margin: 0; padding: 0; }
-        header { background: var(--primary); color: white; padding: 50px 20px; text-align: center; cursor: pointer; }
-        .container { max-width: 800px; margin: -30px auto 50px; padding: 0 15px; }
-        .card { background: white; margin-bottom: 20px; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-right: 6px solid var(--primary); cursor: pointer; }
-        h2 { color: var(--primary); margin-top: 0; }
-        #article-view { display: none; background: white; padding: 30px; border-radius: 12px; }
-        .back-btn { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-bottom: 20px; }
-        .hidden { display: none; }
+        :root {
+            --primary: #1b4332; 
+            --accent: #d4a373;  
+            --bg: #fdfaf6;
+            --card-bg: #ffffff;
+            --text: #2d3436;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(27, 67, 50, 0.85)), 
+                        url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        header h1 { font-size: 2.8rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+
+        .container {
+            max-width: 850px;
+            margin: -2.5rem auto 3rem auto;
+            padding: 0 15px;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            margin-bottom: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            border-right: 6px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            transition: 0.3s ease;
+            cursor: pointer;
+            padding: 20px;
+        }
+
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+
+        .category-tag {
+            background: var(--accent);
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .news-card h2 { margin: 15px 0 10px 0; color: var(--primary); font-size: 1.6rem; line-height: 1.4; }
+        .date { font-size: 0.9rem; color: #777; margin-bottom: 10px; display: block; }
+
+        #article-view { display: none; background: white; padding: 35px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        .back-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        footer { 
+            background: #1b4332; 
+            color: white; 
+            text-align: center; 
+            padding: 40px 20px; 
+            margin-top: 50px; 
+        }
+
+        .hidden { display: none !important; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
     </style>
 </head>
 <body>
 
-<header onclick="location.reload()">
-    <h1>⛰️ वॉइस ऑफ उत्तराखंड</h1>
-    <p>देवभूमि की हर खबर, आप तक</p>
+<header onclick="goHome()">
+    <h1 id="site-logo">⛰️ वॉइस ऑफ उत्तराखंड</h1>
+    <p>देवभूमि की हर खबर, आप तक सबसे पहले</p>
 </header>
 
 <div class="container">
-    <div id="news-feed">
-        <div class="card" onclick="showStory('खबर 1', 'चारधाम यात्रा की तैयारियां जोरों पर हैं। प्रशासन ने रास्ते खोलने का काम शुरू कर दिया है।')">
-            <h2>बद्रीनाथ मार्ग पर बर्फ हटाने का काम शुरू</h2>
-            <p>9 मार्च, 2026 • क्लिक करके पूरी खबर पढ़ें...</p>
-        </div>
-        <div class="card" onclick="showStory('खबर 2', 'उत्तराखंड के पहाड़ी इलाकों में इस बार सेब की फसल बहुत अच्छी होने की उम्मीद है।')">
-            <h2>हर्षिल में सेब की बंपर पैदावार</h2>
-            <p>8 मार्च, 2026 • क्लिक करके पूरी खबर पढ़ें...</p>
-        </div>
-    </div>
+    <main id="news-feed"></main>
 
-    <div id="article-view">
-        <button class="back-btn" onclick="location.reload()">← वापस जाएं</button>
-        <h1 id="view-title"></h1>
-        <hr>
-        <p id="view-content" style="font-size: 1.2rem; line-height: 1.8;"></p>
-    </div>
+    <article id="article-view">
+        <button class="back-btn" onclick="goHome()">← मुख्य समाचार पर लौटें</button>
+        <div id="article-body"></div>
+    </article>
 </div>
 
+<footer>
+    <p style="font-size: 1.4rem; margin-bottom: 10px;"><strong>वॉइस ऑफ उत्तराखंड</strong></p>
+    <p>स्थानीय समाचार और सामुदायिक अपडेट के लिए आपका अपना मंच।</p>
+    <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">© 2026 Voice of Uttarakhand</p>
+</footer>
+
 <script>
-    function showStory(title, content) {
-        document.getElementById('news-feed').classList.add('hidden');
-        document.getElementById('article-view').style.display = 'block';
-        document.getElementById('view-title').innerText = title;
-        document.getElementById('view-content').innerText = content;
-        window.scrollTo(0,0);
+    const newsStories = [
+        {
+            id: 1,
+            category: "धार्मिक यात्रा",
+            title: "बद्रीनाथ धाम के कपाट खुलने की तैयारियां शुरू",
+            date: "9 मार्च, 2026",
+            excerpt: "प्रशासन ने यात्रा मार्ग से बर्फ हटाने का काम युद्ध स्तर पर शुरू कर दिया है...",
+            fullText: "चारधाम यात्रा 2026 को लेकर उत्तराखंड सरकार ने कमर कस ली है। बीआरओ की टीमें जोशीमठ से आगे बर्फ हटाने के काम में जुट गई हैं। इस साल रिकॉर्ड श्रद्धालुओं के आने की उम्मीद है।"
+        },
+        {
+            id: 2,
+            category: "खेती-बाड़ी",
+            title: "हर्षिल घाटी में सेब की बंपर पैदावार",
+            date: "8 मार्च, 2026",
+            excerpt: "इस साल अनुकूल मौसम के कारण सेब के बागानों में अच्छी रौनक देखी जा रही है...",
+            fullText: "उत्तरकाशी जिले की हर्षिल घाटी में इस साल सेब की फसल बहुत अच्छी हुई है। कृषि विभाग अब किसानों को सीधे बाजार उपलब्ध कराने पर काम कर रहा है।"
+        }
+    ];
+
+    const feed = document.getElementById('news-feed');
+    const viewer = document.getElementById('article-view');
+    const articleBody = document.getElementById('article-body');
+
+    function showFeed() {
+        feed.innerHTML = newsStories.map(story => `
+            <div class="news-card" onclick="openStory(${story.id})">
+                <span class="category-tag">${story.category}</span>
+                <h2>${story.title}</h2>
+                <span class="date">📅 ${story.date}</span>
+                <p>${story.excerpt}</p>
+                <p style="color:var(--primary); font-weight:bold; margin-top:10px;">आगे पढ़ें > </p>
+            </div>
+        `).join('');
     }
+
+    function openStory(id) {
+        const story = newsStories.find(s => s.id === id);
+        if(!story) return;
+        feed.classList.add('hidden');
+        viewer.style.display = 'block';
+        articleBody.innerHTML = `
+            <span class="category-tag">${story.category}</span>
+            <h1 style="color:var(--primary); margin:15px 0; font-size:2.2rem;">${story.title}</h1>
+            <span class="date">प्रकाशित तिथि: ${story.date}</span>
+            <hr>
+            <div style="font-size:1.25rem; line-height:1.9;">${story.fullText}</div>
+        `;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goHome() {
+        viewer.style.display = 'none';
+        feed.classList.remove('hidden');
+    }
+
+    showFeed();
 </script>
 
 </body>
